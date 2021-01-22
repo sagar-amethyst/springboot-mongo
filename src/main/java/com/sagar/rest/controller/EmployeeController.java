@@ -303,10 +303,9 @@ public class EmployeeController {
 	
 	@GetMapping
 	@CrossOrigin("*")
-	@RequestMapping(value="/api/mock/data,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/api/mock/data",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> apiMock() {
-
-		// Find the Collection
+	// Find the Collection
 		MongoCollection<Document> collection = mongoTemplate.getCollection("entitySet");
 		// It is in the form Doc
 		FindIterable<Document> fit = collection.find().limit(2); // return some data only
