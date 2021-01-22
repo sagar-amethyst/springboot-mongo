@@ -306,10 +306,10 @@ public class EmployeeController {
 	@RequestMapping(value="/api/mock/data",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> apiMock() {
 	// Find the Collection
-		MongoCollection<Document> collection = mongoTemplate.getCollection("entitySet");
+		MongoCollection<Document> collection = mongoTemplate.getCollection("entity");
 		// It is in the form Doc
-		FindIterable<Document> fit = collection.find().limit(2); // return some data only
-		//FindIterable<Document> fit = collection.find();
+		//FindIterable<Document> fit = collection.find().limit(2); // return some data only
+		FindIterable<Document> fit = collection.find();
 
 		MongoCursor<Document> cursor = fit.iterator();
 		StringBuilder strBuilder = new StringBuilder();
