@@ -309,7 +309,7 @@ public class EmployeeController {
 		MongoCollection<Document> collection = mongoTemplate.getCollection("entity");
 		// It is in the form Doc
 		//FindIterable<Document> fit = collection.find().limit(2); // return some data only
-		FindIterable<Document> fit = collection.find();
+		FindIterable<Document> fit = collection.find().limit(5);
 
 		MongoCursor<Document> cursor = fit.iterator();
 		StringBuilder strBuilder = new StringBuilder();
