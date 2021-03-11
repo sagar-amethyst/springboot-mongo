@@ -36,13 +36,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import com.sagar.rest.model.Authentication;
 import com.sagar.rest.model.BusinessObject;
 import com.sagar.rest.model.Doc;
 import com.sagar.rest.model.Employee;
+import com.sagar.rest.model.GrantedScopes;
 import com.sagar.rest.model.SystemDetails;
 import com.sagar.rest.repository.DocRepository;
 
@@ -331,5 +332,22 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(jsonObject.toMap(), HttpStatus.OK);
 
 	}
+	
+	@GetMapping("/tdrTestDataRepositoryAPIOnboarding-1.0.0/srv_api/getPrincipal")
+	@ResponseBody
+	@CrossOrigin("*")
+	public ResponseEntity<Authentication> getPrincipal() {
+		List<String> grantedScopes = Arrays.asList("de-Dev-Test-security!t7220.SystemOnBoarder","tde-Dev-Test-security!t7220.MyApproval",
+				"tde-Dev-Test-security!t7220.MyRequest",
+				"openid","tde-Dev-Test-security!t7220.Analytics","tde-Dev-Test-security!t7220.ManageTag","tde-Dev-Test-security!t7220.APIOnBoarder",
+				"uaa.user","tde-Dev-Test-security!t7220.Deployer",
+				"tde-Dev-Test-security!t7220.InstancePicker","tde-Dev-Test-security!t7220.ManageReviewer","tde-Dev-Test-security!t7220.TDG");
+		
+		Authentication auth =new Authentication();
+		auth.setEmail("bhuiya.sagar@sap.com");
+		auth.setGrantedScopes(grantedScopes);
+		return new ResponseEntity<Authentication>(auth, HttpStatus.OK);
+	}
+
 	
 }
